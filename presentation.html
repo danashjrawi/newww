@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Immersion System - Project Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            overflow-y: auto;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .presentation-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .project-title {
+            font-size: 2em;
+            color: #2d3748;
+            font-weight: 700;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin: 40px 0 25px 0;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: '▸';
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        h3 {
+            color: #4a5568;
+            font-size: 1.6em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: '•';
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .content-section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .content-section h3 {
+            margin-top: 0;
+        }
+
+        p {
+            color: #4a5568;
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 2;
+            padding-left: 35px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .highlight-box h3::before {
+            display: none;
+        }
+
+        .highlight-box p, .highlight-box li {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .highlight-box li::before {
+            color: #48bb78;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .objective-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+        }
+
+        .objective-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 8px;
+        }
+
+        .objective-card p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.05em;
+            margin: 0;
+        }
+
+        .team-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .team-member {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 3px solid #667eea;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .team-member h4 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .team-member p {
+            color: #4a5568;
+            font-size: 1.05em;
+            margin: 8px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        /* Gantt Chart Styles */
+        .gantt-container {
+            margin: 40px 0;
+            overflow-x: auto;
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gantt-header {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .gantt-months {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 2px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #4a5568;
+        }
+
+        .gantt-month {
+            padding: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+        }
+
+        .gantt-row {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .gantt-task-name {
+            font-size: 0.95em;
+            color: #2d3748;
+            font-weight: 500;
+            padding: 8px;
+        }
+
+        .gantt-timeline {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 3px;
+            height: 40px;
+            position: relative;
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 3px;
+        }
+
+        .gantt-bar {
+            height: calc(100% - 4px);
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7em;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            margin: 2px 0;
+        }
+
+        .gantt-bar:hover {
+            transform: translateY(-2px) scaleY(1.1);
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+        }
+
+        .gantt-bar.critical {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        }
+
+        .gantt-bar.non-critical {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.75;
+        }
+
+        .gantt-empty {
+            background: transparent;
+            min-height: 10px;
+        }
+
+        .gantt-legend {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95em;
+        }
+
+        .legend-color {
+            width: 25px;
+            height: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-color.critical {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        }
+
+        .legend-color.non-critical {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.7;
+        }
+
+        .bottleneck-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 5px solid #f5576c;
+        }
+
+        .bottleneck-box h3 {
+            color: #c05621;
+            margin-top: 0;
+        }
+
+        .bottleneck-box ul {
+            margin-top: 15px;
+        }
+
+        .bottleneck-box li {
+            color: #7c2d12;
+        }
+
+        .bottleneck-box li::before {
+            color: #f5576c;
+        }
+
+        .challenges-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .challenges-box h3 {
+            color: #2d3748;
+            margin-top: 0;
+        }
+
+        .challenges-box ul {
+            margin-top: 15px;
+        }
+
+        .challenges-box li {
+            color: #2d3748;
+        }
+
+        .challenges-box li::before {
+            color: #667eea;
+        }
+
+        .risk-box {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 5px solid #48bb78;
+        }
+
+        .risk-box h3 {
+            color: #22543d;
+            margin-top: 0;
+        }
+
+        .risk-box ul {
+            margin-top: 15px;
+        }
+
+        .risk-box li {
+            color: #22543d;
+        }
+
+        .risk-box li::before {
+            color: #48bb78;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1em;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        tr:hover {
+            background-color: #f7fafc;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .duration-box {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            font-size: 1.3em;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .critical-path-box {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .critical-path-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .critical-path-box p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 968px) {
+            .presentation-container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            .objectives-grid,
+            .team-box,
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .project-title {
+                font-size: 1.5em;
+            }
+
+            .gantt-header,
+            .gantt-row {
+                grid-template-columns: 200px 1fr;
+            }
+
+            .gantt-task-name {
+                font-size: 0.85em;
+            }
+
+            .gantt-months,
+            .gantt-timeline {
+                grid-template-columns: repeat(8, 80px);
+            }
+
+            .table-container {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.9em;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .presentation-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="header">
+            <h1>🟩 Project Overview</h1>
+            <div class="project-title">Smart Immersion System for Controlled Thermal Treatment of Nitinol Wires</div>
+        </div>
+
+        <h2>Background</h2>
+        <div class="content-section">
+            <ul>
+                <li>Endostream Medical develops implants for brain aneurysm treatment that include nitinol wires.</li>
+                <li>These wires require a precise thermal and surface-treatment process ("electropolish") to improve corrosion resistance.</li>
+                <li>Currently, the immersion process is performed manually, at ~40 °C for ~15 minutes — inefficient, inconsistent, and not scalable.</li>
+            </ul>
+        </div>
+
+        <h2>Project Goal</h2>
+        <div class="highlight-box">
+            <h3>Design and build a smart automated immersion system that:</h3>
+            <ul>
+                <li>Controls temperature, immersion time, and acid concentration precisely.</li>
+                <li>Includes hardware, software, and control components.</li>
+                <li>Ensures safety, repeatability, and process optimization.</li>
+            </ul>
+        </div>
+
+        <h2>Main Objectives</h2>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <h4>🔧 Automation</h4>
+                <p>Automate the manual electropolishing process.</p>
+            </div>
+            <div class="objective-card">
+                <h4>📊 Monitoring</h4>
+                <p>Develop a closed-loop control system for real-time monitoring.</p>
+            </div>
+            <div class="objective-card">
+                <h4>⚙️ Prototype</h4>
+                <p>Build a prototype capable of stable and repeatable operation.</p>
+            </div>
+            <div class="objective-card">
+                <h4>✅ Validation</h4>
+                <p>Validate the system through experiments and performance tests.</p>
+            </div>
+        </div>
+
+        <h2>Team Roles</h2>
+        <div class="team-box">
+            <div class="team-member">
+                <h4>👨‍💻 Dana & Maria</h4>
+                <p><strong>Responsibilities:</strong></p>
+                <p>• Full system design</p>
+                <p>• Mechanical and control integration</p>
+                <p>• Software development</p>
+                <p>• Testing</p>
+            </div>
+            <div class="team-member">
+                <h4>🎓 Supervision</h4>
+                <p><strong>Alon Mai</strong></p>
+                <p>Endostream Medical CTO</p>
+            </div>
+        </div>
+
+        <h2>📅 Project Timeline</h2>
+        <div class="gantt-container">
+            <div class="gantt-header">
+                <div style="padding: 8px;">Phase / Task</div>
+                <div class="gantt-months">
+                    <div class="gantt-month">Oct 2024</div>
+                    <div class="gantt-month">Nov 2024</div>
+                    <div class="gantt-month">Dec 2024</div>
+                    <div class="gantt-month">Jan 2025</div>
+                    <div class="gantt-month">Feb 2025</div>
+                    <div class="gantt-month">Mar 2025</div>
+                    <div class="gantt-month">Apr 2025</div>
+                    <div class="gantt-month">May 2025</div>
+                </div>
+            </div>
+
+            <!-- Task 1: Theoretical Background - Oct 1-31 (1 month) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">1. Theoretical Background</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-bar critical" style="grid-column: 1 / 2;"></div>
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 2: Learning the Manual Process - Oct 15 - Nov 7 (spans 2 months) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">2. Learning the Manual Process</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-bar critical" style="grid-column: 1 / 3;"></div>
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 3: Translating Manual → Automatic - Nov 1-25 (1 month) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">3. Translating Manual → Automatic</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div>
+                    <div class="gantt-bar critical" style="grid-column: 2 / 3;"></div>
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 4: System Alternatives + Concept Design - Nov 20 - Dec 10 (spans 2 months) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">4. System Alternatives + Concept Design</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div>
+                    <div class="gantt-bar critical" style="grid-column: 2 / 4;"></div>
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 5: Preliminary Design - Dec 1 - Jan 15 (spans 2 months) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">5. Preliminary Design (Hardware + Control)</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div>
+                    <div class="gantt-bar critical" style="grid-column: 3 / 5;"></div>
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 6: Prototype Construction - Jan 15 - Feb 15 (spans 2 months) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">6. Prototype Construction</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                    <div class="gantt-bar critical" style="grid-column: 4 / 6;"></div>
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 7: Testing & Verification - Feb 10 - Mar 5 (spans 2 months) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">7. Testing & Verification</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                    <div class="gantt-bar critical" style="grid-column: 5 / 7;"></div>
+                    <div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 8: Final Design Approval - Mar 1-15 (1 month) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">8. Final Design Approval</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                    <div class="gantt-bar non-critical" style="grid-column: 6 / 7;"></div>
+                    <div class="gantt-empty"></div>
+                </div>
+            </div>
+
+            <!-- Task 9: Documentation & Report - Mar 15 - Apr 15 (spans 2 months) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">9. Documentation & Report</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                    <div class="gantt-bar non-critical" style="grid-column: 6 / 8;"></div>
+                </div>
+            </div>
+
+            <!-- Task 10: Manufacturing & Optimization - Apr 10 - May 10 (spans 2 months) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">10. Manufacturing & Optimization</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                    <div class="gantt-bar critical" style="grid-column: 7 / 9;"></div>
+                </div>
+            </div>
+
+            <!-- Task 11: Presentation & Delivery - May 10-25 (1 month) -->
+            <div class="gantt-row">
+                <div class="gantt-task-name">11. Presentation & Delivery</div>
+                <div class="gantt-timeline">
+                    <div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div><div class="gantt-empty"></div>
+                    <div class="gantt-bar non-critical" style="grid-column: 8 / 9;"></div>
+                </div>
+            </div>
+
+            <div class="gantt-legend">
+                <div class="legend-item">
+                    <div class="legend-color critical"></div>
+                    <span>Critical Path</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color non-critical"></div>
+                    <span>Non-Critical</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="critical-path-box">
+            <h3>🟥 Critical Path</h3>
+            <p>Phases 1 → 7 → 10 form the critical path — they directly impact the completion date (research → design → prototype → test → optimize).</p>
+        </div>
+
+        <div class="duration-box">
+            🕓 Total Project Duration: ~8 months (October 2024 – May 2025)
+        </div>
+
+        <h2>⚙️ Project Challenges & Risk Management</h2>
+
+        <div class="bottleneck-box">
+            <h3>⚠️ Main Bottlenecks</h3>
+            <ul>
+                <li><strong>Component Delivery:</strong> Delay in receiving sensors, heating elements, or acid-resistant materials.</li>
+                <li><strong>Integration Complexity:</strong> Synchronizing hardware (temperature control, motors) with software logic.</li>
+                <li><strong>Testing Constraints:</strong> Limited lab time for experiments involving acid solutions.</li>
+                <li><strong>Environmental Safety:</strong> Need for corrosion-resistant components and safe handling procedures.</li>
+            </ul>
+        </div>
+
+        <div class="challenges-box">
+            <h3>🚧 Key Challenges</h3>
+            <ul>
+                <li>Maintaining <strong>stable 40 °C</strong> thermal control in a liquid bath environment.</li>
+                <li>Ensuring <strong>chemical resistance</strong> and long-term durability of system components.</li>
+                <li>Designing a <strong>fully automated immersion sequence</strong> with precise timing and motion control.</li>
+                <li>Validating accuracy of the control loop (PID tuning, sensors calibration).</li>
+                <li>Achieving a <strong>compact, user-friendly design</strong> suitable for future production at Endostream.</li>
+            </ul>
+        </div>
+
+        <h2>⏱️ Lead Times & Dependencies</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item / Task</th>
+                        <th>Estimated Lead Time</th>
+                        <th>Dependency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sensors & heating elements</td>
+                        <td>2–3 weeks</td>
+                        <td>Procurement</td>
+                    </tr>
+                    <tr>
+                        <td>Mechanical structure (metal/acrylic parts)</td>
+                        <td>1–2 weeks</td>
+                        <td>Design finalization</td>
+                    </tr>
+                    <tr>
+                        <td>Control electronics & microcontroller</td>
+                        <td>2 weeks</td>
+                        <td>Circuit design approval</td>
+                    </tr>
+                    <tr>
+                        <td>Testing & calibration cycles</td>
+                        <td>~1 week each</td>
+                        <td>Prototype completion</td>
+                    </tr>
+                    <tr>
+                        <td>Report & documentation</td>
+                        <td>1 week</td>
+                        <td>Final test data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="risk-box">
+            <h3>✅ Risk Mitigation</h3>
+            <ul>
+                <li>Begin <strong>ordering critical components early</strong> (parallel to design).</li>
+                <li>Use <strong>modular assembly</strong> to allow progress even before all parts arrive.</li>
+                <li><strong>Plan overlapping tasks</strong> (software and documentation) to save time.</li>
+                <li>Conduct early safety and material compatibility tests.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
