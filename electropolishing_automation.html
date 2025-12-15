@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Electropolishing System - Automation Solutions | Endostream Final Project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            padding: 20px 15px;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.2);
+            padding: 35px;
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 30px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 18px;
+            color: white;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.05em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 24px rgba(245, 87, 108, 0.25);
+            color: white;
+        }
+
+        .intro-section h2 {
+            font-size: 1.6em;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .intro-section p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .intro-section ul {
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+
+        .intro-section li {
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .solution-wrapper {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .solution-wrapper:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .solution-header {
+            padding: 25px 30px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        .solution1 .solution-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+
+        .solution2 .solution-header {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+        }
+
+        .solution3 .solution-header {
+            background: linear-gradient(135deg, #ffe66d 0%, #ffa726 100%);
+        }
+
+        .solution-header:hover {
+            filter: brightness(1.05);
+        }
+
+        .solution-header::after {
+            content: '▼';
+            font-size: 1.2em;
+            transition: transform 0.3s;
+            opacity: 0.9;
+        }
+
+        .solution-header.expanded::after {
+            transform: rotate(180deg);
+        }
+
+        .solution-title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .solution-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6em;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .solution-title-text h2 {
+            font-size: 1.7em;
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .solution-type {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .solution-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .solution-content.expanded {
+            max-height: 20000px;
+            transition: max-height 0.8s ease-in;
+        }
+
+        .solution-body {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 28px;
+            padding: 24px;
+            border-radius: 14px;
+            position: relative;
+            border-left: 4px solid;
+        }
+
+        .concept-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left-color: #2196f3;
+        }
+
+        .materials-section {
+            background: linear-gradient(135deg, #fff4e6 0%, #ffe8cc 100%);
+            border-left-color: #ff9800;
+        }
+
+        .process-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left-color: #4caf50;
+        }
+
+        .connections-section {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left-color: #9c27b0;
+        }
+
+        .advantages-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left-color: #2196f3;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        ul, ol {
+            margin-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+
+        li strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Process Flow Visualization */
+        .process-flow {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 50px;
+            width: 3px;
+            height: calc(100% + 5px);
+            background: linear-gradient(to bottom, #4caf50, #81c784);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 8px;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .operator-section, .machine-section {
+            margin-top: 30px;
+        }
+
+        .section-label {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4caf50;
+            display: inline-block;
+        }
+
+        .diagram-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 22px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        .diagram-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 22px;
+            color: #2c3e50;
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .diagram-explanation {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .diagram-box {
+            fill: #667eea;
+            stroke: #764ba2;
+            stroke-width: 2.5;
+            rx: 8;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+
+        .diagram-box-secondary {
+            fill: #f093fb;
+            stroke: #f5576c;
+            stroke-width: 2.5;
+            rx: 8;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+
+        .diagram-box-tertiary {
+            fill: #4ecdc4;
+            stroke: #44a08d;
+            stroke-width: 2.5;
+            rx: 8;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+
+        .diagram-text {
+            fill: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+
+        .diagram-line {
+            stroke: #2c3e50;
+            stroke-width: 2.5;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+
+        .diagram-line-dashed {
+            stroke: #7f8c8d;
+            stroke-width: 2;
+            stroke-dasharray: 5,5;
+            fill: none;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 40px 0;
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .comparison-table th:first-child {
+            border-top-left-radius: 14px;
+        }
+
+        .comparison-table th:last-child {
+            border-top-right-radius: 14px;
+        }
+
+        .comparison-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.9em;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 10px;
+                font-size: 13px;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .solution-title-text h2 {
+                font-size: 1.4em;
+            }
+            
+            .solution-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚙️ Suggested Automation Concepts for Electropolishing</h1>
+            <p class="subtitle">4 clips, 40 seconds | Endostream Final Project</p>
+        </header>
+
+        <div class="intro-section">
+            <h2>🎯 Why automate this step?</h2>
+            <p>Electropolishing is extremely sensitive. Because the immersion time is only ~40 seconds, doing it manually can easily cause errors:</p>
+            <ul>
+                <li>different immersion depth between operators</li>
+                <li>inconsistent timing (human reaction time)</li>
+                <li>shaking or non-repeatable movement</li>
+                <li>part-to-part variability when dipping 4 clips together</li>
+            </ul>
+            <p style="margin-top: 15px; font-weight: 600;">The goal is to make the process <strong>repeatable, accurate, fast, and mistake-proof</strong>.</p>
+        </div>
+
+        <!-- Solution 1: Pneumatic -->
+        <div class="solution-wrapper solution1">
+            <div class="solution-header" onclick="toggleSolution(1)">
+                <div class="solution-title">
+                    <div class="solution-number">1</div>
+                    <div class="solution-title-text">
+                        <h2>Option 1 – Pneumatic Automation</h2>
+                        <p class="solution-type">Mechanical, Fast, Very Repeatable</p>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-content" id="solution1-content">
+                <div class="solution-body">
+                    <div class="section concept-section">
+                        <h3><span class="icon">💡</span>Concept</h3>
+                        <p>A <strong>pneumatic vertical actuator</strong> moves the 4-wire fixture up/down into the EP bath.</p>
+                        <p>A <strong>pneumatic time-delay valve</strong> holds the fixture inside the bath for <strong>exactly 40 seconds</strong>, then automatically retracts it.</p>
+                        <p>This solution is intentionally simple: <strong>no software timing</strong>, no step losses, and very fast motion.</p>
+                    </div>
+
+                    <div class="section materials-section">
+                        <h3><span class="icon">📦</span>What you need (main components)</h3>
+                        <ul>
+                            <li>Double-acting pneumatic cylinder (vertical motion, ~50–100 mm stroke)</li>
+                            <li>Adjustable mechanical hard-stop (defines the exact dipping depth)</li>
+                            <li>Pneumatic time-delay valve (set to 40 seconds)</li>
+                            <li>5/2 solenoid directional valve (controls down/up motion)</li>
+                            <li>FRL unit (filter–regulator–lubricator for clean stable air)</li>
+                            <li>Start pushbutton + Emergency Stop + relay</li>
+                            <li>Green/Red indicator lights</li>
+                            <li>4-clip fixture (holds 4 nitinol wires)</li>
+                            <li>Fixed electropolishing bath container (glass/HDPE)</li>
+                        </ul>
+                    </div>
+
+                    <div class="section process-section">
+                        <h3><span class="icon">⚡</span>Full process (what happens)</h3>
+                        
+                        <div class="process-flow">
+                            <div class="operator-section">
+                                <span class="section-label">👤 Operator:</span>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Load 4 wires into fixture</div>
+                                        <div class="step-description">Operator carefully places 4 nitinol wires into the 4-clip fixture, ensuring they are securely held in place.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Insert fixture into holder</div>
+                                        <div class="step-description">The fixture is inserted into the machine's holder mechanism, which is designed to securely hold the fixture during the process.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Press Start button</div>
+                                        <div class="step-description">Operator presses the Start pushbutton to initiate the automated cycle. All subsequent steps are automatic.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="machine-section">
+                                <span class="section-label">🤖 Machine (Automatic):</span>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Safety check</div>
+                                        <div class="step-description">System verifies that the Emergency Stop is not pressed and that adequate air pressure is available. This ensures safe operation before proceeding.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Rapid downward motion</div>
+                                        <div class="step-description">The solenoid valve activates, sending compressed air to the pneumatic cylinder. The cylinder rod extends downward, moving the fixture and wires into the EP bath. Motion continues until the mechanical hard-stop is reached, ensuring identical immersion depth every cycle.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Hold position for exactly 40 seconds</div>
+                                        <div class="step-description">Once the hard-stop is reached, the pneumatic time-delay valve is activated. The cylinder remains in the down position, holding all 4 wires at the exact same depth in the electropolishing solution. The timer is hardware-based, ensuring precise 40-second duration regardless of external factors.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Automatic retraction</div>
+                                        <div class="step-description">After exactly 40 seconds, the time-delay valve switches state. The directional valve changes, redirecting air to retract the cylinder. The fixture moves upward smoothly and quickly, removing all 4 wires from the bath simultaneously.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Cycle complete indication</div>
+                                        <div class="step-description">The green indicator light turns on, and an optional buzzer sounds to signal cycle completion. The system returns to home position, ready for the operator to remove the fixture and unload the processed wires.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section connections-section">
+                        <h3><span class="icon">🔌</span>What connects to what</h3>
+                        
+                        <div class="diagram-container">
+                            <div class="diagram-title">Pneumatic Connections</div>
+                            <svg class="diagram-svg" viewBox="0 0 1000 180" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="40" y="80" width="140" height="70" class="diagram-box" />
+                                <text x="110" y="115" class="diagram-text">Compressed Air</text>
+                                <line x1="180" y1="115" x2="250" y2="115" class="diagram-line" />
+                                
+                                <rect x="250" y="80" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="320" y="115" class="diagram-text">FRL Unit</text>
+                                <line x1="390" y1="115" x2="460" y2="115" class="diagram-line" />
+                                
+                                <rect x="460" y="80" width="140" height="70" class="diagram-box-tertiary" />
+                                <text x="530" y="115" class="diagram-text">Directional Valve</text>
+                                <line x1="600" y1="115" x2="670" y2="115" class="diagram-line" />
+                                
+                                <rect x="670" y="80" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="740" y="115" class="diagram-text">Pneumatic Timer</text>
+                                <line x1="810" y1="115" x2="880" y2="115" class="diagram-line" />
+                                
+                                <rect x="880" y="60" width="140" height="110" class="diagram-box" />
+                                <text x="950" y="115" class="diagram-text">Pneumatic</text>
+                                <text x="950" y="135" class="diagram-text">Cylinder</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Flow explanation:</strong> Compressed air flows through the FRL (Filter-Regulator-Lubricator) unit to ensure clean, regulated air. The directional valve controls the direction of motion. The DOWN line passes through the pneumatic timer (ensuring 40-second hold), while the UP line bypasses the timer for immediate retraction. The cylinder provides the vertical motion to move the fixture.
+                            </div>
+                        </div>
+
+                        <div class="diagram-container">
+                            <div class="diagram-title">Electrical Connections</div>
+                            <svg class="diagram-svg" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="80" y="40" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="150" y="75" class="diagram-text">Start Button</text>
+                                <line x1="150" y1="110" x2="150" y2="160" class="diagram-line" />
+                                
+                                <rect x="80" y="210" width="140" height="70" class="diagram-box" style="fill: #e74c3c; stroke: #c0392b;" />
+                                <text x="150" y="245" class="diagram-text">E-Stop</text>
+                                <line x1="150" y1="210" x2="150" y2="180" class="diagram-line" />
+                                
+                                <line x1="150" y1="160" x2="340" y2="160" class="diagram-line" />
+                                
+                                <rect x="340" y="130" width="140" height="60" class="diagram-box-tertiary" />
+                                <text x="410" y="160" class="diagram-text">Relay</text>
+                                <line x1="480" y1="160" x2="610" y2="160" class="diagram-line" />
+                                
+                                <rect x="610" y="130" width="140" height="60" class="diagram-box" />
+                                <text x="680" y="155" class="diagram-text">Solenoid</text>
+                                <text x="680" y="170" class="diagram-text">Valve</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Control logic:</strong> When the Start button is pressed (and E-Stop is released), the relay is energized. The relay then activates the solenoid valve, which controls the directional valve in the pneumatic circuit. The E-Stop immediately cuts power to both the relay and solenoid, ensuring instant safety shutdown.
+                            </div>
+                        </div>
+
+                        <div class="diagram-container">
+                            <div class="diagram-title">Mechanical Chain</div>
+                            <svg class="diagram-svg" viewBox="0 0 1100 180" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead3" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="40" y="70" width="140" height="70" class="diagram-box" />
+                                <text x="110" y="105" class="diagram-text">Cylinder Rod</text>
+                                <line x1="180" y1="105" x2="250" y2="105" class="diagram-line" />
+                                
+                                <rect x="250" y="70" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="320" y="105" class="diagram-text">Moving Plate</text>
+                                <line x1="390" y1="105" x2="460" y2="105" class="diagram-line" />
+                                
+                                <rect x="460" y="70" width="140" height="70" class="diagram-box-tertiary" />
+                                <text x="530" y="105" class="diagram-text">4-Clip Fixture</text>
+                                <line x1="600" y1="105" x2="670" y2="105" class="diagram-line" />
+                                
+                                <rect x="670" y="70" width="140" height="70" class="diagram-box" />
+                                <text x="740" y="105" class="diagram-text">Nitinol Wires</text>
+                                <line x1="810" y1="105" x2="880" y2="105" class="diagram-line" />
+                                
+                                <rect x="880" y="70" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="950" y="105" class="diagram-text">EP Bath</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Mechanical transmission:</strong> The pneumatic cylinder rod extends and retracts, moving the attached plate. This plate holds the 4-clip fixture, which in turn holds the 4 nitinol wires. All components move together as one unit, ensuring identical motion for all wires. The mechanical hard-stop physically limits downward travel, guaranteeing consistent immersion depth.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section advantages-section">
+                        <h3><span class="icon">✅</span>Why it's useful</h3>
+                        <ul>
+                            <li>Very accurate 40 s timing with <strong>hardware timing</strong>, not human timing</li>
+                            <li>Mechanical depth stop = <strong>identical immersion depth</strong> every cycle</li>
+                            <li>Fast cycle start/finish (good for short processes)</li>
+                            <li>Treats all <strong>4 wires identically</strong> in the same movement</li>
+                            <li>Simple, robust, and easy to validate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution 2: PLC + Servo -->
+        <div class="solution-wrapper solution2">
+            <div class="solution-header" onclick="toggleSolution(2)">
+                <div class="solution-title">
+                    <div class="solution-number">2</div>
+                    <div class="solution-title-text">
+                        <h2>Option 2 – PLC + Servo/Stepper Axis + HMI</h2>
+                        <p class="solution-type">Industrial, Traceable, Production-Ready</p>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-content" id="solution2-content">
+                <div class="solution-body">
+                    <div class="section concept-section">
+                        <h3><span class="icon">💡</span>Concept</h3>
+                        <p>A PLC controls a <strong>precise Z-axis</strong> (servo or stepper). The operator runs the process from a <strong>touchscreen HMI</strong>.</p>
+                        <p>This option is designed like a real production machine: accurate motion, alarms, and optional sensor integration (level, temperature, current).</p>
+                    </div>
+
+                    <div class="section materials-section">
+                        <h3><span class="icon">📦</span>What you need (main components)</h3>
+                        <ul>
+                            <li>PLC with motion control (e.g., Siemens S7-1200 / Unitronics Vision)</li>
+                            <li>HMI touchscreen</li>
+                            <li>Servo motor or stepper motor + drive</li>
+                            <li>Linear Z-axis (ball screw/lead screw + rails)</li>
+                            <li>Upper & lower limit switches</li>
+                            <li>Start/Stop and Emergency Stop</li>
+                            <li>4-clip fixture + fixed EP bath</li>
+                            <li>Optional: bath level sensor, temperature sensor, current sensor</li>
+                        </ul>
+                    </div>
+
+                    <div class="section process-section">
+                        <h3><span class="icon">⚡</span>Full process (what happens)</h3>
+                        
+                        <div class="process-flow">
+                            <div class="operator-section">
+                                <span class="section-label">👤 Operator:</span>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Load 4 wires into fixture</div>
+                                        <div class="step-description">Operator carefully loads 4 nitinol wires into the 4-clip fixture, ensuring proper alignment and secure attachment.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Start cycle from HMI</div>
+                                        <div class="step-description">Operator uses the touchscreen HMI to start the cycle. The HMI may display current system status, previous cycle data, and allow parameter adjustments if needed.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="machine-section">
+                                <span class="section-label">🤖 Machine (Automatic):</span>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">System verification and safety checks</div>
+                                        <div class="step-description">The PLC performs comprehensive safety verification: confirms Emergency Stop is released, checks that the Z-axis is properly homed, verifies no active alarms are present. If optional sensors are installed, it also checks bath level (to ensure adequate solution) and temperature (to ensure solution is within acceptable range). Only when all checks pass does the cycle proceed.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Precise controlled descent</div>
+                                        <div class="step-description">The PLC sends motion commands to the motor drive, which controls the servo/stepper motor. The motor rotates, driving the ball screw or lead screw. This converts rotational motion into precise linear motion along the Z-axis rails. The axis moves downward at a predefined speed (smooth acceleration and deceleration). The system monitors position continuously and stops at the exact programmed immersion depth with sub-millimeter accuracy. All 4 wires enter the bath simultaneously at the same depth.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Hold position for exactly 40 seconds</div>
+                                        <div class="step-description">Once the target depth is reached, the PLC starts its internal timer. The motor drive holds the position actively (servo) or maintains position through step holding (stepper). The system maintains exact depth throughout the 40-second period, compensating for any drift. If optional sensors are present, the system may also monitor current to confirm electropolishing is occurring. The timer is digitally controlled and logged for traceability.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Controlled ascent to home</div>
+                                        <div class="step-description">After exactly 40 seconds, the PLC commands the axis to move upward. The motor reverses direction, smoothly retracting the fixture and wires from the bath. The system moves at controlled speed until reaching the home position (confirmed by the upper limit switch). The smooth motion ensures no splashing or solution carryover.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Cycle completion and data logging</div>
+                                        <div class="step-description">The HMI displays "Cycle Complete" with a green indicator. All cycle data is automatically saved: exact timing, depth achieved, any alarms or warnings, operator ID (if logged in), and timestamp. This data can be exported for quality records, which is crucial for medical device manufacturing traceability. The system is ready for the next cycle.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section connections-section">
+                        <h3><span class="icon">🔌</span>What connects to what</h3>
+                        
+                        <div class="diagram-container">
+                            <div class="diagram-title">Electrical & Control Connections</div>
+                            <svg class="diagram-svg" viewBox="0 0 1100 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead4" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="40" y="40" width="160" height="80" class="diagram-box-tertiary" />
+                                <text x="120" y="80" class="diagram-text">HMI</text>
+                                <line x1="120" y1="120" x2="120" y2="200" class="diagram-line" />
+                                
+                                <rect x="40" y="300" width="160" height="80" class="diagram-box-secondary" />
+                                <text x="120" y="340" class="diagram-text">Buttons</text>
+                                <line x1="120" y1="300" x2="120" y2="240" class="diagram-line" />
+                                
+                                <line x1="120" y1="200" x2="280" y2="200" class="diagram-line" />
+                                
+                                <rect x="280" y="170" width="160" height="60" class="diagram-box" />
+                                <text x="360" y="200" class="diagram-text">PLC</text>
+                                <line x1="440" y1="200" x2="580" y2="200" class="diagram-line" />
+                                
+                                <rect x="580" y="170" width="160" height="60" class="diagram-box-secondary" />
+                                <text x="660" y="200" class="diagram-text">Motor Drive</text>
+                                <line x1="740" y1="200" x2="860" y2="200" class="diagram-line" />
+                                
+                                <rect x="860" y="170" width="160" height="60" class="diagram-box-tertiary" />
+                                <text x="940" y="195" class="diagram-text">Servo/Stepper</text>
+                                <text x="940" y="210" class="diagram-text">Motor</text>
+                                <line x1="940" y1="230" x2="940" y2="300" class="diagram-line" />
+                                
+                                <rect x="860" y="300" width="160" height="80" class="diagram-box" />
+                                <text x="940" y="335" class="diagram-text">Z-Axis</text>
+                                <text x="940" y="350" class="diagram-text" font-size="10">(Ball Screw)</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Control hierarchy:</strong> The HMI provides the user interface and communicates with the PLC over a network or serial connection. Physical buttons can provide alternative control. The PLC acts as the central controller, executing the program logic and sending motion commands to the motor drive. The motor drive converts these commands into precise motor control signals (current, voltage, frequency). The motor drives the Z-axis mechanism, providing smooth and accurate vertical motion.
+                            </div>
+                        </div>
+
+                        <div class="diagram-container">
+                            <div class="diagram-title">Sensors to PLC</div>
+                            <svg class="diagram-svg" viewBox="0 0 900 350" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead5" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="60" y="40" width="150" height="65" class="diagram-box-secondary" />
+                                <text x="135" y="72" class="diagram-text">Upper Limit</text>
+                                <text x="135" y="85" class="diagram-text">Switch</text>
+                                <line x1="135" y1="105" x2="135" y2="165" class="diagram-line" />
+                                
+                                <rect x="60" y="165" width="150" height="65" class="diagram-box-secondary" />
+                                <text x="135" y="197" class="diagram-text">Lower Limit</text>
+                                <text x="135" y="210" class="diagram-text">Switch</text>
+                                <line x1="135" y1="230" x2="135" y2="270" class="diagram-line" />
+                                
+                                <rect x="60" y="270" width="150" height="65" class="diagram-box" style="fill: #e74c3c; stroke: #c0392b;" />
+                                <text x="135" y="302" class="diagram-text">E-Stop</text>
+                                
+                                <line x1="135" y1="165" x2="350" y2="165" class="diagram-line" />
+                                
+                                <rect x="550" y="135" width="180" height="60" class="diagram-box" />
+                                <text x="640" y="165" class="diagram-text">PLC Inputs</text>
+                                
+                                <text x="350" y="90" fill="#2c3e50" font-size="12" font-weight="600">Optional:</text>
+                                <rect x="320" y="100" width="110" height="45" class="diagram-box-tertiary" />
+                                <text x="375" y="122" class="diagram-text" font-size="10">Bath Level</text>
+                                <rect x="320" y="170" width="110" height="45" class="diagram-box-tertiary" />
+                                <text x="375" y="192" class="diagram-text" font-size="10">Temp Sensor</text>
+                                <rect x="320" y="250" width="110" height="45" class="diagram-box-tertiary" />
+                                <text x="375" y="272" class="diagram-text" font-size="10">Current</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Input signals:</strong> Safety-critical inputs (limit switches and E-Stop) connect directly to PLC digital inputs. These provide homing reference and prevent over-travel. The E-Stop immediately stops all motion when activated. Optional sensors (bath level, temperature, current) can be added for enhanced process monitoring and quality assurance. All sensor readings can be logged and used for alarm generation.
+                            </div>
+                        </div>
+
+                        <div class="diagram-container">
+                            <div class="diagram-title">Mechanical Chain</div>
+                            <svg class="diagram-svg" viewBox="0 0 1100 180" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead6" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="40" y="70" width="140" height="70" class="diagram-box-tertiary" />
+                                <text x="110" y="105" class="diagram-text">Motor</text>
+                                <line x1="180" y1="105" x2="250" y2="105" class="diagram-line" />
+                                
+                                <rect x="250" y="70" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="320" y="105" class="diagram-text">Screw</text>
+                                <line x1="390" y1="105" x2="460" y2="105" class="diagram-line" />
+                                
+                                <rect x="460" y="70" width="140" height="70" class="diagram-box" />
+                                <text x="530" y="100" class="diagram-text">Linear</text>
+                                <text x="530" y="115" class="diagram-text">Carriage</text>
+                                <line x1="600" y1="105" x2="670" y2="105" class="diagram-line" />
+                                
+                                <rect x="670" y="70" width="140" height="70" class="diagram-box-tertiary" />
+                                <text x="740" y="105" class="diagram-text">4-Clip Fixture</text>
+                                <line x1="810" y1="105" x2="880" y2="105" class="diagram-line" />
+                                
+                                <rect x="880" y="70" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="950" y="105" class="diagram-text">Nitinol Wires</text>
+                                <line x1="1020" y1="105" x2="1040" y2="105" class="diagram-line" />
+                                <text x="1050" y="109" fill="#2c3e50" font-size="12">EP Bath</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Motion transmission:</strong> The servo or stepper motor rotates, driving the ball screw or lead screw. This converts rotational motion into precise linear motion. The linear carriage moves along guide rails, ensuring smooth and accurate vertical movement. The 4-clip fixture is attached to the carriage, and the nitinol wires are held in the fixture. All components move together as a rigid assembly, ensuring identical positioning for all 4 wires throughout the cycle.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section advantages-section">
+                        <h3><span class="icon">✅</span>Why it's useful</h3>
+                        <ul>
+                            <li>Highest precision and repeatability</li>
+                            <li>Easy to add sensors and interlocks</li>
+                            <li>Supports logging and traceability (important for medical devices)</li>
+                            <li>Looks and behaves like a production machine</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution 3: Microcontroller + Stepper -->
+        <div class="solution-wrapper solution3">
+            <div class="solution-header" onclick="toggleSolution(3)">
+                <div class="solution-title">
+                    <div class="solution-number">3</div>
+                    <div class="solution-title-text">
+                        <h2>Option 3 – Microcontroller + Stepper Motor + Limit Switches</h2>
+                        <p class="solution-type">Low-Cost Prototype, High Flexibility</p>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-content" id="solution3-content">
+                <div class="solution-body">
+                    <div class="section concept-section">
+                        <h3><span class="icon">💡</span>Concept</h3>
+                        <p>An Arduino/ESP32 controls a stepper-driven Z-axis. Limit switches provide homing and safety.</p>
+                        <p>The 40-second electropolishing time is controlled in software. This is a great prototyping approach that still improves accuracy compared to manual dipping.</p>
+                    </div>
+
+                    <div class="section materials-section">
+                        <h3><span class="icon">📦</span>What you need (main components)</h3>
+                        <ul>
+                            <li>Arduino / ESP32 microcontroller</li>
+                            <li>Stepper motor (NEMA 17/23) + stepper driver</li>
+                            <li>Z-axis mechanism (lead screw + rails)</li>
+                            <li>Upper and lower limit switches</li>
+                            <li>Start button + Reset button + Emergency Stop</li>
+                            <li>Buzzer / LEDs / small display (optional)</li>
+                            <li>4-clip fixture + fixed EP bath</li>
+                        </ul>
+                    </div>
+
+                    <div class="section process-section">
+                        <h3><span class="icon">⚡</span>Full process (what happens)</h3>
+                        
+                        <div class="process-flow">
+                            <div class="operator-section">
+                                <span class="section-label">👤 Operator:</span>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Load 4 wires into fixture</div>
+                                        <div class="step-description">Operator carefully places 4 nitinol wires into the 4-clip fixture, ensuring they are properly secured and aligned.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Press Start button</div>
+                                        <div class="step-description">Operator presses the Start button to initiate the automated cycle. The microcontroller begins executing the program sequence.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="machine-section">
+                                <span class="section-label">🤖 Machine (Automatic):</span>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Homing sequence</div>
+                                        <div class="step-description">The microcontroller commands the stepper motor to move upward slowly. The system continuously monitors the upper limit switch. When the switch is triggered (indicating the carriage has reached the top), the microcontroller sets this position as Z=0 (home position). This ensures a repeatable reference point for every cycle, compensating for any accumulated errors or system variations.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Controlled descent to immersion depth</div>
+                                        <div class="step-description">The microcontroller calculates the number of steps needed to reach the desired immersion depth (based on the lead screw pitch and step resolution). It commands the stepper driver to move the motor this exact number of steps downward. The stepper driver converts the step commands into motor current, driving the motor precisely. The motor rotates the lead screw, which moves the linear carriage (and attached fixture) downward along the guide rails. All 4 wires descend together into the EP bath, stopping at the programmed depth with high accuracy.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Hold position for exactly 40 seconds</div>
+                                        <div class="step-description">Once the target depth is reached, the microcontroller starts its software timer. The stepper motor holds position by maintaining current in the windings (holding torque). The system actively holds the position for exactly 40 seconds. If a display is present, it may show a countdown timer. The software timer is precise and repeatable, eliminating human timing errors. The exact timing can be easily adjusted in the code if needed for process optimization.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Controlled ascent to home</div>
+                                        <div class="step-description">After 40 seconds, the microcontroller commands the motor to reverse direction. The stepper driver reverses the motor rotation, which rotates the lead screw in the opposite direction. The carriage moves upward smoothly, retracting the fixture and wires from the bath. The system moves upward until the upper limit switch is triggered again, confirming the return to home position. This completes the cycle and resets the system for the next operation.</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Cycle complete indication</div>
+                                        <div class="step-description">The motor stops holding position. A buzzer sounds (if installed) to audibly signal completion. Status LEDs change to indicate "Cycle Complete" (e.g., green LED on). If a display is present, it shows "Ready" or "Cycle Complete" message. The system returns to idle state, waiting for the operator to remove the fixture and load new wires for the next cycle.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section connections-section">
+                        <h3><span class="icon">🔌</span>What connects to what</h3>
+                        
+                        <div class="diagram-container">
+                            <div class="diagram-title">Electrical & Control Connections</div>
+                            <svg class="diagram-svg" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead7" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="60" y="40" width="150" height="65" class="diagram-box-secondary" />
+                                <text x="135" y="72" class="diagram-text">Start Button</text>
+                                <line x1="135" y1="105" x2="135" y2="165" class="diagram-line" />
+                                
+                                <rect x="60" y="165" width="150" height="65" class="diagram-box-secondary" />
+                                <text x="135" y="197" class="diagram-text">Reset Button</text>
+                                <line x1="135" y1="230" x2="135" y2="270" class="diagram-line" />
+                                
+                                <rect x="60" y="270" width="150" height="65" class="diagram-box" style="fill: #e74c3c; stroke: #c0392b;" />
+                                <text x="135" y="302" class="diagram-text">E-Stop</text>
+                                
+                                <line x1="135" y1="165" x2="340" y2="165" class="diagram-line" />
+                                
+                                <rect x="340" y="135" width="180" height="60" class="diagram-box" />
+                                <text x="430" y="165" class="diagram-text">Microcontroller</text>
+                                <line x1="520" y1="165" x2="650" y2="165" class="diagram-line" />
+                                
+                                <rect x="650" y="135" width="160" height="60" class="diagram-box-secondary" />
+                                <text x="730" y="165" class="diagram-text">Stepper Driver</text>
+                                <line x1="810" y1="165" x2="880" y2="165" class="diagram-line" />
+                                
+                                <rect x="880" y="100" width="100" height="130" class="diagram-box-tertiary" />
+                                <text x="930" y="145" class="diagram-text">Stepper</text>
+                                <text x="930" y="160" class="diagram-text">Motor</text>
+                                
+                                <rect x="60" y="350" width="150" height="45" class="diagram-box-tertiary" />
+                                <text x="135" y="372" class="diagram-text" font-size="10">Limit Switches</text>
+                                <line x1="135" y1="350" x2="340" y2="195" class="diagram-line-dashed" />
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Control flow:</strong> User inputs (Start, Reset buttons, and E-Stop) connect to the microcontroller's digital input pins. The microcontroller reads these inputs and executes the program logic. Based on the program, it sends step and direction signals to the stepper driver. The stepper driver converts these low-power signals into the high-current signals needed to drive the stepper motor coils. Limit switches connect to additional input pins, providing position feedback for homing and safety. The E-Stop can be implemented in both hardware (immediate power cutoff) and software (emergency stop routine in code).
+                            </div>
+                        </div>
+
+                        <div class="diagram-container">
+                            <div class="diagram-title">Mechanical Chain</div>
+                            <svg class="diagram-svg" viewBox="0 0 1100 180" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead8" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="40" y="70" width="140" height="70" class="diagram-box-tertiary" />
+                                <text x="110" y="105" class="diagram-text">Stepper Motor</text>
+                                <line x1="180" y1="105" x2="250" y2="105" class="diagram-line" />
+                                
+                                <rect x="250" y="70" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="320" y="105" class="diagram-text">Lead Screw</text>
+                                <line x1="390" y1="105" x2="460" y2="105" class="diagram-line" />
+                                
+                                <rect x="460" y="70" width="140" height="70" class="diagram-box" />
+                                <text x="530" y="100" class="diagram-text">Linear</text>
+                                <text x="530" y="115" class="diagram-text">Carriage</text>
+                                <line x1="600" y1="105" x2="670" y2="105" class="diagram-line" />
+                                
+                                <rect x="670" y="70" width="140" height="70" class="diagram-box-tertiary" />
+                                <text x="740" y="105" class="diagram-text">4-Clip Fixture</text>
+                                <line x1="810" y1="105" x2="880" y2="105" class="diagram-line" />
+                                
+                                <rect x="880" y="70" width="140" height="70" class="diagram-box-secondary" />
+                                <text x="950" y="105" class="diagram-text">Nitinol Wires</text>
+                                <line x1="1020" y1="105" x2="1040" y2="105" class="diagram-line" />
+                                <text x="1050" y="109" fill="#2c3e50" font-size="12">EP Bath</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Motion mechanism:</strong> The stepper motor rotates in precise steps (typically 1.8° per full step, or smaller with microstepping). Each step corresponds to a known amount of linear movement based on the lead screw pitch. For example, with a 2mm pitch lead screw and 200 steps per revolution, each step equals 0.01mm of linear movement. The lead screw converts this rotational motion into linear motion. The linear carriage, constrained by guide rails, moves vertically. The 4-clip fixture is attached to the carriage, so all 4 wires move together with identical positioning. The relationship between step count and linear position is precise and repeatable, allowing accurate depth control.
+                            </div>
+                        </div>
+
+                        <div class="diagram-container">
+                            <div class="diagram-title">Feedback & Indicators</div>
+                            <svg class="diagram-svg" viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrowhead9" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#2c3e50" />
+                                    </marker>
+                                </defs>
+                                <rect x="250" y="90" width="180" height="60" class="diagram-box" />
+                                <text x="340" y="120" class="diagram-text">Microcontroller</text>
+                                <line x1="340" y1="150" x2="340" y2="200" class="diagram-line" />
+                                
+                                <line x1="250" y1="120" x2="150" y2="120" class="diagram-line" />
+                                <rect x="60" y="90" width="100" height="60" class="diagram-box-secondary" />
+                                <text x="110" y="120" class="diagram-text" font-size="10">Buzzer</text>
+                                
+                                <line x1="430" y1="120" x2="520" y2="120" class="diagram-line" />
+                                <rect x="520" y="90" width="140" height="60" class="diagram-box-tertiary" />
+                                <text x="590" y="112" class="diagram-text" font-size="10">LEDs /</text>
+                                <text x="590" y="127" class="diagram-text" font-size="10">Display</text>
+                                
+                                <rect x="200" y="200" width="300" height="35" class="diagram-box-tertiary" />
+                                <text x="350" y="217" class="diagram-text" font-size="10">Status Indicators</text>
+                            </svg>
+                            <div class="diagram-explanation">
+                                <strong>Output signals:</strong> The microcontroller controls output devices through its digital output pins. A buzzer provides audible feedback when the cycle completes or if an error occurs. Status LEDs can show system state (e.g., green for ready, yellow for running, red for error). An optional small display (LCD or OLED) can show more detailed information like remaining time, current step, or system status. These feedback mechanisms keep the operator informed about the system state and cycle progress.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section advantages-section">
+                        <h3><span class="icon">✅</span>Why it's useful</h3>
+                        <ul>
+                            <li>Low cost and fast to build</li>
+                            <li>Flexible (easy to change timing, depth, modes)</li>
+                            <li>Strong learning value and good for student prototype</li>
+                            <li>Removes the biggest manual errors: timing + depth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Solution 1: Pneumatic</th>
+                    <th>Solution 2: PLC + Servo</th>
+                    <th>Solution 3: Microcontroller + Stepper</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Cost</strong></td>
+                    <td>Medium</td>
+                    <td>High</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td><strong>Complexity</strong></td>
+                    <td>Medium</td>
+                    <td>High</td>
+                    <td>Low-Medium</td>
+                </tr>
+                <tr>
+                    <td><strong>Precision</strong></td>
+                    <td>High (mechanical stop)</td>
+                    <td>Very High (digital control)</td>
+                    <td>High (step-based)</td>
+                </tr>
+                <tr>
+                    <td><strong>Timing Accuracy</strong></td>
+                    <td>Very High (pneumatic timer)</td>
+                    <td>Very High (PLC timer)</td>
+                    <td>High (software timer)</td>
+                </tr>
+                <tr>
+                    <td><strong>Flexibility</strong></td>
+                    <td>Low (fixed 40s)</td>
+                    <td>Very High (programmable)</td>
+                    <td>High (code-based)</td>
+                </tr>
+                <tr>
+                    <td><strong>Traceability</strong></td>
+                    <td>Low</td>
+                    <td>Very High (full logging)</td>
+                    <td>Medium (can add logging)</td>
+                </tr>
+                <tr>
+                    <td><strong>Reliability</strong></td>
+                    <td>Very High (mechanical)</td>
+                    <td>Very High (industrial)</td>
+                    <td>Medium (depends on design)</td>
+                </tr>
+                <tr>
+                    <td><strong>Maintenance</strong></td>
+                    <td>Medium (pneumatic components)</td>
+                    <td>Low (industrial standards)</td>
+                    <td>Medium (electronic components)</td>
+                </tr>
+                <tr>
+                    <td><strong>Best For</strong></td>
+                    <td>Fixed process, high reliability</td>
+                    <td>Production, medical device mfg</td>
+                    <td>Prototyping, learning, low volume</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            <p>🎓 Endostream Final Project | Automatic Electropolishing System Automation Solutions</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleSolution(solutionNum) {
+            const content = document.getElementById(`solution${solutionNum}-content`);
+            const header = event.currentTarget;
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                header.classList.remove('expanded');
+            } else {
+                // Close all other solutions
+                document.querySelectorAll('.solution-content').forEach(el => {
+                    el.classList.remove('expanded');
+                });
+                document.querySelectorAll('.solution-header').forEach(el => {
+                    el.classList.remove('expanded');
+                });
+                
+                // Open clicked solution
+                content.classList.add('expanded');
+                header.classList.add('expanded');
+            }
+        }
+    </script>
+</body>
+</html>
