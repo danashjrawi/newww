@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<!-- saved from url=(0208)file:///C:/Users/user/Desktop/%D7%93%D7%90%D7%A0%D7%94%20%D7%90%D7%95%D7%A0%D7%99%D7%91%D7%A8%D7%A1%D7%99%D7%98%D7%94/%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%D7%92%D7%9E%D7%A8/electropolishing_automation.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation of the Electropolishing Process</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            padding: 20px 15px;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.2);
+            padding: 50px 45px;
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: #667eea;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #764ba2;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .comparison-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            border-left-color: #f093fb;
+        }
+
+        .process-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left-color: #4caf50;
+        }
+
+        .manual-section {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left-color: #ff9800;
+        }
+
+        .automated-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left-color: #2196f3;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        p {
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+
+        strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Option Cards - Collapsible */
+        .option-container {
+            margin: 30px 0;
+        }
+
+        .option-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            margin-bottom: 0;
+        }
+
+        .option-header:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .option-header.option-a {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .option-header.option-b {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .option-header.option-c {
+            background: linear-gradient(135deg, #ffe66d 0%, #ffa726 100%);
+            box-shadow: 0 4px 15px rgba(255, 230, 109, 0.3);
+        }
+
+        .option-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option-icon {
+            font-size: 1.8em;
+        }
+
+        .option-arrow {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .option-header.active .option-arrow {
+            transform: rotate(180deg);
+        }
+
+        .option-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            background: white;
+            border-radius: 0 0 12px 12px;
+            padding: 0 30px;
+        }
+
+        .option-content.active {
+            max-height: 5000px;
+            padding: 30px;
+            transition: max-height 0.8s ease-in, padding 0.5s ease-in;
+        }
+
+        .option-content h3 {
+            color: #667eea;
+            margin-top: 20px;
+        }
+
+        .option-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .pros, .cons {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .pros {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+        }
+
+        .cons {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 4px solid #f44336;
+        }
+
+        .pros h4, .cons h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .pros h4::before {
+            content: "✓ ";
+            color: #4caf50;
+            font-weight: 700;
+        }
+
+        .cons h4::before {
+            content: "✗ ";
+            color: #f44336;
+            font-weight: 700;
+        }
+
+        /* Flowchart Image */
+        .flowchart-container {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .flowchart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .flowchart-placeholder {
+            padding: 60px 30px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 12px;
+            border: 3px dashed #ccc;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        /* Selected Option Highlight */
+        .selected-option {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #4caf50;
+            margin: 25px 0;
+        }
+
+        .selected-option h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .selected-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 16px;
+            margin-top: 50px;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .summary-section h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .summary-section h3 {
+            color: rgba(255,255,255,0.95);
+        }
+
+        .summary-section strong {
+            color: rgba(255,255,255,0.95);
+        }
+
+        hr {
+            margin: 40px 0;
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #667eea, transparent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .option-title {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚙️ Automation of the Electropolishing Process</h1>
+            <p class="subtitle">Transforming Manual Operations into Automated Precision</p>
+        </header>
+
+        <!-- Section 1: Manual Process -->
+        <div class="section-card manual-section">
+            <h2>1. Manual Process Description (AS-IS)</h2>
+            <p>The electropolishing process is currently performed manually on an existing laboratory electropolishing machine. The sequence of operations is as follows:</p>
+            <ol>
+                <li>The operator secures the wire in the clips on the vertical stand.</li>
+                <li>The stand is manually lowered until the wire is fully immersed in the electropolishing solution.</li>
+                <li>A stopwatch is used to measure the immersion time (approximately 40 seconds).</li>
+                <li>After the set time, the operator manually raises the stand.</li>
+                <li>The wire is removed, and the procedure is repeated for the next sample.</li>
+            </ol>
+            <p><strong>Challenge:</strong> This manual process relies entirely on the operator's judgment and reaction time. As a result, variations may occur in immersion depth and immersion time, which can affect process repeatability and consistency.</p>
+        </div>
+
+        <!-- Section 2: Automated Process -->
+        <div class="section-card automated-section">
+            <h2>2. Automated Process Description (TO-BE)</h2>
+            <p>In the automated system, the same process is executed automatically, while the electropolishing machine itself (bath, electrodes, and power supply) remains unchanged.</p>
+            <p><strong>The goal:</strong> Automate the vertical motion and the timing, while keeping the same basic sequence.</p>
+            
+            <h3>Automated Process Steps:</h3>
+            <ol>
+                <li>The operator mounts the wire in the clips and presses a <strong>START</strong> button.</li>
+                <li>A motorized system automatically lowers the stand to a predefined immersion depth.</li>
+                <li>When the lower position is reached, the system automatically starts a <strong>40-second timer</strong>.</li>
+                <li>After exactly 40s expires, the system automatically raises the stand.</li>
+                <li>When the upper position is reached, the motor stops and the system signals <strong>process completion</strong>.</li>
+            </ol>
+
+            <p><strong>Key Point:</strong> Only the <strong>motion and timing</strong> are automated. The chemical and electrical aspects of electropolishing remain fully manual and unchanged.</p>
+
+            <h3>Safety and Reliability Elements:</h3>
+            <ul>
+                <li><strong>Upper and lower limit switches</strong> to define the exact end positions.</li>
+                <li><strong>Emergency stop</strong> to immediately cut power to the motor.</li>
+                <li>Optional interlocks: bath temperature/level OK, hood door closed, etc.</li>
+            </ul>
+            <p>This converts a manual timing-and-motion task into a repeatable automated cycle.</p>
+        </div>
+
+        <!-- Section 3: Flowchart -->
+        <div class="section-card process-section">
+            <h2>3. Automated Process Flowchart</h2>
+            <p>The following flowchart illustrates the complete automated process sequence:</p>
+            
+            <div class="flowchart-container">
+                <img src="./Automation of the Electropolishing Process1_files/block diagram.png" alt="Automated Process Flowchart">
+            </div>
+
+            <h3>Process Flow Summary:</h3>
+            <ol>
+                <li><strong>Idle state</strong> – Stand up, timer reset. Display: "Load wire &amp; press START".</li>
+                <li><strong>START pressed?</strong>
+                    <ul>
+                        <li>No → stay in Idle.</li>
+                        <li>Yes → go to safety checks.</li>
+                    </ul>
+                </li>
+                <li><strong>Safety checks OK?</strong> (E-stop not pressed, optional bath/hood checks)
+                    <ul>
+                        <li>No → show alarm, return to Idle.</li>
+                        <li>Yes → move stand down.</li>
+                    </ul>
+                </li>
+                <li><strong>Move stand DOWN</strong> until LOWER LIMIT switch is ON → stop motor.</li>
+                <li><strong>Start 40 s timer</strong>; keep stand in solution.</li>
+                <li>When timer reaches 40 s → <strong>move stand UP</strong>.</li>
+                <li>Stop motor when UPPER LIMIT switch is ON.</li>
+                <li><strong>Signal "Process finished"</strong>, wait for operator to remove wire and press RESET.</li>
+                <li>Return to <strong>Idle state</strong> and be ready for next cycle.</li>
+            </ol>
+        </div>
+
+        <!-- Section 4: Implementation Options -->
+        <div class="section-card comparison-section">
+            <h2>4. Implementation Options for the Automated Process</h2>
+            <p>After defining the automated electropolishing sequence, several possible implementation approaches were examined.</p>
+            <p>All options implement the same automated motion-and-timing sequence, differing only in controller type, motor selection, and system complexity.</p>
+            
+            <!-- Option A -->
+            <div class="option-container">
+                <div class="option-header option-a" onclick="toggleOption(&#39;a&#39;)">
+                    <div class="option-title">
+                        <span class="option-icon">🔧</span>
+                        <span>Option A – Microcontroller with Stepper Motor</span>
+                    </div>
+                    <span class="option-arrow">▼</span>
+                </div>
+                <div class="option-content" id="option-a-content">
+                    <h3>Description</h3>
+                    <p>In this option, the automated process is controlled by a <strong>microcontroller</strong> (e.g., Arduino), which commands a <strong>stepper motor</strong> to move the stand vertically.</p>
+                    <p>The motor's rotational motion is converted into linear vertical motion using a mechanical transmission (such as a lead screw). Upper and lower limit switches define the motion boundaries and provide safety.</p>
+
+                    <h3>Main Components</h3>
+                    <ul>
+                        <li>Microcontroller – executes the automation logic and timing</li>
+                        <li>Stepper motor and driver – provide controlled vertical motion</li>
+                        <li>Mechanical transmission – converts rotation into vertical movement</li>
+                        <li>Limit switches – define upper and lower positions</li>
+                    </ul>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Advantages</h4>
+                            <ul>
+                                <li>High repeatability of immersion depth</li>
+                                <li>Good control over vertical motion</li>
+                                <li>Flexible control logic implemented in software</li>
+                                <li>Suitable for applications requiring precise positioning</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Disadvantages</h4>
+                            <ul>
+                                <li>Higher system complexity</li>
+                                <li>More components compared to simpler solutions</li>
+                                <li>Increased development and tuning effort</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Option B -->
+            <div class="option-container">
+                <div class="option-header option-b active" onclick="toggleOption(&#39;b&#39;)">
+                    <div class="option-title">
+                        <span class="option-icon">⚡</span>
+                        <span>Option B – Microcontroller with Geared DC Motor and Limit Switches</span>
+                    </div>
+                    <span class="option-arrow">▼</span>
+                </div>
+                <div class="option-content active" id="option-b-content">
+                    <h3>Description</h3>
+                    <p>In this option, a microcontroller controls a geared DC motor that drives the vertical motion of the stand through a mechanical transmission.</p>
+                    <p>The motor's rotational motion is converted into linear vertical movement using a lead screw and nut mechanism (or alternatively a linear actuator). The stand moves until it reaches predefined upper and lower end positions, which are defined by limit switches and mechanical hard stops.</p>
+                    <p>The immersion time is controlled entirely by the microcontroller software. Position accuracy is achieved mechanically rather than through software position control.</p>
+
+                    <h3>Main Components</h3>
+                    <ul>
+                        <li>Microcontroller – controls motion direction, sequence, and immersion timing</li>
+                        <li>Geared DC motor – provides sufficient torque to lift and lower the stand reliably</li>
+                        <li>Motor driver and DC power supply – supply and control motor power, rated for motor current</li>
+                        <li>Mechanical transmission (lead screw + nut or linear actuator) – converts motor rotation into vertical linear motion</li>
+                        <li>Upper and lower limit switches – define end positions and stop motion</li>
+                        <li>Mechanical hard stops (recommended) – provide physical position repeatability and safety</li>
+                    </ul>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Advantages</h4>
+                            <ul>
+                                <li>Simple and robust control concept</li>
+                                <li>Lower cost compared to stepper motor–based solutions</li>
+                                <li>Easy to implement, wire, and debug</li>
+                                <li>Well suited for fixed up/down motion with constant immersion depth</li>
+                                <li>Position repeatability achieved through mechanical design rather than complex software</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Disadvantages</h4>
+                            <ul>
+                                <li>Lower positioning resolution compared to stepper motor systems</li>
+                                <li>Motion speed and smoothness depend on load, friction, and gearbox selection</li>
+                                <li>Limited flexibility for variable or programmable immersion depths</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Option C -->
+            <div class="option-container">
+                <div class="option-header option-c" onclick="toggleOption(&#39;c&#39;)">
+                    <div class="option-title">
+                        <span class="option-icon">🏭</span>
+                        <span>Option C – PLC-Based Automation System</span>
+                    </div>
+                    <span class="option-arrow">▼</span>
+                </div>
+                <div class="option-content" id="option-c-content">
+                    <h3>Description</h3>
+                    <p>This option uses a <strong>Programmable Logic Controller (PLC)</strong> to implement the automated sequence.</p>
+                    <p>The PLC controls the motor, monitors limit switches, and manages timing and safety logic using industrial automation principles.</p>
+
+                    <h3>Main Components</h3>
+                    <ul>
+                        <li>PLC – executes control logic and timing</li>
+                        <li>Motor driver and motor – provide vertical motion</li>
+                        <li>Mechanical transmission – converts rotation into linear motion</li>
+                        <li>Limit switches and safety inputs – ensure safe operation</li>
+                    </ul>
+
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>Advantages</h4>
+                            <ul>
+                                <li>High reliability and robustness</li>
+                                <li>Industrial-standard solution</li>
+                                <li>Strong safety integration</li>
+                                <li>Suitable for long-term continuous operation</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>Disadvantages</h4>
+                            <ul>
+                                <li>Higher cost</li>
+                                <li>Increased wiring and programming complexity</li>
+                                <li>Overqualified for a single-axis laboratory application</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Selection -->
+        <div class="section-card">
+            <h2>5. Selection of Alternative and Automated Process Characterization</h2>
+            
+            <div class="selected-option">
+                <h3>Selected Alternative</h3>
+                <p>After evaluating the available options, <strong>Option B – Microcontroller with Geared DC Motor and Limit Switches</strong> was selected for this project stage.</p>
+
+                <h4>Reasons for Selection:</h4>
+                <ul>
+                    <li>Sufficient performance for fixed up/down motion</li>
+                    <li>Simple and clear architecture</li>
+                    <li>Lower cost and easier implementation</li>
+                </ul>
+            </div>
+
+            <h3>Automated Process Characterization Table</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Motion type</td><td>Vertical linear motion</td></tr>
+                    <tr><td>Actuator</td><td>DC motor</td></tr>
+                    <tr><td>Motion conversion</td><td>Mechanical transmission (lead screw or belt)</td></tr>
+                    <tr><td>Travel distance</td><td>~236.8 mm</td></tr>
+                    <tr><td>Immersion time</td><td>40 seconds</td></tr>
+                    <tr><td>Position definition</td><td>Upper and lower limit switches</td></tr>
+                    <tr><td>Control method</td><td>Microcontroller-based logic</td></tr>
+                    <tr><td>Manual actions</td><td>Wire mounting, Start/Reset</td></tr>
+                    <tr><td>Automated actions</td><td>Lowering, timing, lifting</td></tr>
+                    <tr><td>Safety features</td><td>Emergency stop, limit switches</td></tr>
+                    <tr><td>Integration method</td><td>Mechanical attachment only</td></tr>
+                    <tr><td>Electrical isolation</td><td>Full isolation from electropolishing power</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 6: Preliminary Design -->
+        <div class="section-card">
+            <h2>6. Preliminary Mechanical, Software, and Control Design</h2>
+
+            <h3>Mechanical Design (Preliminary)</h3>
+            <p>The DC motor is mechanically attached to the existing vertical stand using a motion-conversion mechanism such as a <strong>lead screw and nut</strong> or a <strong>belt and pulley system</strong>.</p>
+            <ul>
+                <li>The motor produces rotational motion.</li>
+                <li>The mechanical transmission converts rotation into vertical linear motion.</li>
+                <li>The stand is guided by existing vertical rails, ensuring straight up-and-down movement.</li>
+                <li>There is <strong>no electrical connection</strong> between the motor and the stand.</li>
+            </ul>
+            <p>This design allows the motor to replace the operator's manual force while maintaining the original mechanical structure.</p>
+
+            <h3>Electrical Hardware Design (Preliminary)</h3>
+            <p>The electrical system includes:</p>
+            <ul>
+                <li>Microcontroller (Arduino or similar)</li>
+                <li>DC motor</li>
+                <li>Motor driver (H-bridge or relay module)</li>
+                <li>DC power supply</li>
+                <li>Upper and lower limit switches</li>
+                <li>Start, Reset, and Emergency Stop buttons</li>
+                <li>Status indicator (LED or buzzer)</li>
+            </ul>
+            <p>The automation electronics are electrically isolated from the electropolishing power supply to ensure safety.</p>
+
+            <h3>Software and Control Logic (Preliminary)</h3>
+            <p>The control software executes the following sequence:</p>
+            <ol>
+                <li>Wait for Start command</li>
+                <li>Activate motor to lower stand</li>
+                <li>Stop motor when lower limit switch is activated</li>
+                <li>Start 40-second immersion timer</li>
+                <li>Activate motor to raise stand after timer completion</li>
+                <li>Stop motor when upper limit switch is activated</li>
+                <li>Signal end of cycle and return to idle state</li>
+            </ol>
+            <p>The software controls <strong>motion and timing only</strong>. It does not control motor force or electropolishing parameters.</p>
+        </div>
+
+        <!-- Section 7: Summary -->
+        <div class="summary-section">
+            <h2>7. Summary</h2>
+            <p>At this stage of the project, the manual electropolishing process has been successfully translated into an automated process. Several implementation options were evaluated, and a microcontroller-based DC motor solution was selected as the most suitable alternative. A preliminary mechanical, electrical, and software design has been defined, providing a solid foundation for further detailed design and implementation.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleOption(option) {
+            const content = document.getElementById(`option-${option}-content`);
+            const header = event.currentTarget;
+            
+            // Toggle active class
+            content.classList.toggle('active');
+            header.classList.toggle('active');
+        }
+    </script>
+
+
+</body></html>
